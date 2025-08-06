@@ -96,10 +96,9 @@ function Product() {
         </div>
     )
     return (
-        <div>
+        <div className="product-container">
             <h1>Pagina del producto</h1>
             <p>Producto {id}</p>
-            <p>{product?.id}</p>
         </div>
     )
 }
