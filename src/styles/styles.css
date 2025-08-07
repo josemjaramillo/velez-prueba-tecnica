@@ -1,9 +1,9 @@
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
@@ -55,56 +55,112 @@ footer {
 /* Boton del carrito */
 
 .cart-btn {
-  position: relative;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 8px;
-  color: white;
+    position: relative;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    color: white;
 }
 
 .cart-btn:hover {
     scale: 1.1;
-} 
+}
 
 .cart-icon {
-  width: 24px;
-  height: 24px;
+    width: 24px;
+    height: 24px;
 }
 
 .cart-count {
-  position: absolute;
-  top: -4px;
-  right: -4px;
-  background-color: red;
-  color: white;
-  border-radius: 50%;
-  padding: 3px 6px;
-  font-size: 0.75rem;
-  font-weight: bold;
-  line-height: 1;
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 3px 6px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    line-height: 1;
 }
 
 .burst {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 10px;
-  height: 10px;
-  background-color: white;
-  border-radius: 50%;
-  transform: translate(-50%, -50%) scale(1);
-  animation: pop 0.4s ease-out forwards;
-  pointer-events: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    background-color: white;
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    animation: pop 0.4s ease-out forwards;
+    pointer-events: none;
 }
 
 @keyframes pop {
-  0% {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
-  }
-  100% {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(6);
-  }
+    0% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(6);
+    }
+}
+
+/* Galeria */
+.gallery-container {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow: hidden;
+    /* justify-content: center; */
+    scroll-behavior: smooth;
+    gap: 0px;
+    white-space: nowrap;
+}
+
+.gallery-item {
+    max-width: 25%;
+    /* max-width: 300px; */
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+/* Colores */
+.active {
+    background-color: black;
+    color: white
+}
+
+.color-button {
+    width: 1rem;
+    height: 1rem;
+    border: 1px solid white;
+    box-shadow: 0 0 0 1px black;
+}
+
+/* Agregar al carrito */
+
+.add-cart-btn {
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    padding: 8px;
+}
+
+.add-cart-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background-color: white;
+  border: solid 1px black;
+  color: black
+}
+
+/* Precios */
+
+.original-price {
+    opacity: 0.6;
+    text-decoration: line-through 1px;
 }
