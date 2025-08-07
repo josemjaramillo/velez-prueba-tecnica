@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { ShoppingCart } from "lucide-react";
+import { useCart } from "../context/useCart";
 
 function Header() {
     const [burst, setBurst] = useState(false);
-    const [carCount, setCarCount] = useState(0);
+    const {cartCount} = useCart();
 
     const handleClick = () => {
         setBurst(true);
@@ -16,7 +17,7 @@ function Header() {
                 <h1 className="logo">Vélez</h1>
                 <button className="cart-btn" onClick={handleClick}>
                     <ShoppingCart className="cart-icon" />
-                    {carCount ? <span className="cart-count">{carCount}</span> : null}
+                    {cartCount ? <span className="cart-count">{cartCount}</span> : null}
                     {burst && <span className="burst" />}
                 </button>
 

@@ -3,7 +3,7 @@ import type { Product } from "../types/types";
 // TODO: reemplazar "any" para respetar tipado
 function mapProduct(raw: any): Product {
   return {
-    id: raw.productId,
+    productId: raw.productId,
     name: raw.productName,
     brand: raw.brand,
     referenceCode: raw.productReference,

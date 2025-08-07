@@ -1,5 +1,5 @@
 export interface Product {
-    id: string;
+    productId: string;
     name: string;
     brand: string;
     referenceCode: string;
@@ -24,4 +24,9 @@ export interface ItemOffer {
     isAvailable: boolean;
     price: number;
     priceWithoutDiscount: number;
+}
+export interface CartItem {
+  productId: string;
+  itemId: string;
+  quantity: number;
 }

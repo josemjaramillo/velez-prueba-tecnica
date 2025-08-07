@@ -1,12 +1,15 @@
 import { useState } from "react";
+import { useCart } from "../context/useCart";
 
 interface AddCartButtonProps {
+  productId: string;
   itemId: string;
   isAvailable: boolean;
 }
 
-function AddCartButton({ itemId, isAvailable }: AddCartButtonProps) {
+function AddCartButton({ productId, itemId, isAvailable }: AddCartButtonProps) {
   const [isAdding, setIsAdding] = useState(false);
+  const {addToCart} = useCart();
 
   function handleAddToCart() {
     if (!isAvailable) return;
@@ -15,6 +18,7 @@ function AddCartButton({ itemId, isAvailable }: AddCartButtonProps) {
 
     setTimeout(() => {
       console.log(`Agregado al carrito: ${itemId}`);
+      addToCart(productId, itemId);
       setIsAdding(false);
     }, 1000);
   }

@@ -92,6 +92,7 @@ function ProductPage() {
 
             {selectedItem && (
                 <AddCartButton
+                    productId={product.productId}
                     itemId={selectedItem.itemId}
                     isAvailable={selectedItem.offer.isAvailable}
                 />
