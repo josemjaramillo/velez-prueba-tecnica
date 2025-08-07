@@ -1,5 +1,5 @@
 import type { ProductItem } from "../../types/types";
-
+import "./ProductSize.css";
 interface ProductSizeProps {
   items: ProductItem[];
   selectedItem: ProductItem | null;
@@ -8,12 +8,14 @@ interface ProductSizeProps {
 
 function ProductSize({ items, selectedItem, onSelectItem }: ProductSizeProps) {
   return (
-    <div>
+    <div className="size-container">
+      <p>Tallas:</p>
       {items.map((item, index) => (
         <button
           key={index}
-          
-          className={selectedItem?.itemId === item.itemId ? "active" : ""}
+          className={`size-button ${
+            selectedItem?.itemId === item.itemId ? "active" : ""
+          }`}
           onClick={() => {
             onSelectItem(item);
           }}

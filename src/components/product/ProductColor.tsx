@@ -1,4 +1,5 @@
 import getColorHex from "../../utils/getColorHex";
+import "./ProductColor.css"
 
 interface ProductColorProps {
   color: string;
@@ -7,7 +8,7 @@ interface ProductColorProps {
 function ProductColor({ color }: ProductColorProps) {
     const colorHex = getColorHex(color);
     return (
-    <div className="variant-section">
+    <div className="product-color">
       <p>Color:</p>
       <button
         className="active color-button"

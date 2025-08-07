@@ -12,12 +12,15 @@ function getColorHex(colorName: string): string {
     "Verde": "#008000",
     "Verde Claro": "#90ee90",
     "Amarillo": "#ffff00",
+    "Verde Limon": "#ffff00",
     "Naranja": "#ffa500",
     "Café": "#8b4513",
+    "Miel": "#8b4513",
     "Beige": "#f5f5dc",
     "Crema": "#fffdd0",
     "Rosado": "#ffc0cb",
     "Morado": "#800080",
+    "Mora": "#800080",
   };
 
   return colorMap[colorName.trim()] || "#cccccc"; // Color por defecto si no se encuentra

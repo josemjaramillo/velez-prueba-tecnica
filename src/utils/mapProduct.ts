@@ -1,18 +1,17 @@
-import type { Product } from "../types/types";
+import type { Product, RawProduct } from "../types/types";
 
-// TODO: reemplazar "any" para respetar tipado
-function mapProduct(raw: any): Product {
+function mapProduct(raw: RawProduct): Product {
   return {
     productId: raw.productId,
     name: raw.productName,
     brand: raw.brand,
     referenceCode: raw.productReference,
     description: raw.description,
-    items: raw.items.map((item: any) => ({
+    items: raw.items.map((item) => ({
       itemId: item.itemId,
       size: item.Talla[0],
       color: item.Color[0],
-      images: item.images.map((img: any) => ({
+      images: item.images.map((img) => ({
         imageUrl: img.imageUrl,
         imageText: img.imageText,
       })),

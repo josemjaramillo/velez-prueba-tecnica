@@ -1,3 +1,27 @@
+export interface RawProduct {
+  productId: string;
+  productName: string;
+  brand: string;
+  productReference: string;
+  description: string;
+  items: {
+    itemId: string;
+    Talla: string[];
+    Color: string[];
+    images: {
+      imageUrl: string;
+      imageText: string;
+    }[];
+    sellers: {
+      commertialOffer: {
+        IsAvailable: boolean;
+        Price: number;
+        ListPrice: number;
+      };
+    }[];
+  }[];
+}
+
 export interface Product {
     productId: string;
     name: string;
