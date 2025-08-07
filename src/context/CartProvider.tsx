@@ -1,12 +1,16 @@
 import { useEffect, useState } from "react";
-import type { CartItem } from "../types/types";
+import type { CartItem, CartItemDetails, ProductItem } from "../types/types";
 import { CartContext } from "./cartContext";
+import mapProduct from "../utils/mapProduct";
 
 const STORAGE_KEY = "cart-items";
+
 
 export function CartProvider({ children }: { children: React.ReactNode }) {
   const [cart, setCart] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [cartDetails, setCartDetails] = useState<CartItemDetails[]>([]);
+  const [loadingDetails, setLoadingDetails] = useState(true);
 
   useEffect(() => {
     try {
@@ -63,6 +67,55 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     setIsCartOpen(false);
   }
 
+  // Fetch product details for all cart items
+  useEffect(() => {
+    async function fetchCartDetails() {
+      setLoadingDetails(true);
+      const details: CartItemDetails[] = [];
+
+      for (const item of cart) {
+        try {
+          const res = await fetch(
+            `https://api-frontend-production.up.railway.app/api/products/${item.productId}`
+          );
+          const data = await res.json();
+          const rawProduct = data[0];
+          const product = mapProduct(rawProduct);
+          const matchedItem = product.items.find(
+            (i: ProductItem) => i.itemId === item.itemId
+          );
+          if (!matchedItem) continue;
+
+          details.push({
+            ...item,
+            productName: product.name,
+            image: matchedItem.images[0].imageUrl,
+            price: matchedItem.offer.price,
+            color: matchedItem.color,
+            size: matchedItem.size
+          });
+        } catch (err) {
+          console.error("Error cargando producto:", item.productId, err);
+        }
+      }
+
+      setCartDetails(details);
+      setLoadingDetails(false);
+    }
+
+    if (cart.length > 0) {
+      fetchCartDetails();
+    } else {
+      setCartDetails([]);
+      setLoadingDetails(false);
+    }
+  }, [cart]);
+
+  const cartTotal = cartDetails.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0
+  );
+
   return (
     <CartContext.Provider
       value={{
@@ -74,6 +127,9 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         isCartOpen,
         openCart,
         closeCart,
+        cartDetails,
+        loadingDetails,
+        cartTotal
       }}
     >
       {children}

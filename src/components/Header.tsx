@@ -7,9 +7,9 @@ function Header() {
   const { cartCount, openCart, closeCart, isCartOpen } = useCart();
 
   const handleClick = () => {
-    // if (isCartOpen) closeCart();
-    // else openCart();
-    openCart();
+    if (isCartOpen) closeCart();
+    else openCart();
+    // openCart();
     setBurst(true);
     setTimeout(() => setBurst(false), 400); // duración = duración de la animación
   };

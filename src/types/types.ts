@@ -30,3 +30,10 @@ export interface CartItem {
   itemId: string;
   quantity: number;
 }
+export interface CartItemDetails extends CartItem {
+  productName: string;
+  image: string;
+  price: number;
+  color: string;
+  size: string;
+}

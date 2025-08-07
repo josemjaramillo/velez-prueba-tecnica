@@ -1,3 +1,5 @@
+import toCOP from "../utils/toCOP";
+
 interface ProductPriceProps {
   price: number;
   originalPrice: number;
@@ -6,15 +8,7 @@ interface ProductPriceProps {
 function ProductPrice({ price, originalPrice }: ProductPriceProps) {
   const showDiscount = price < originalPrice;
 
-  function toCOP(amount: number): string {
-    return new Intl.NumberFormat("es-CO", {
-      style: "currency",
-      currency: "COP",
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0,
-      currencyDisplay: "narrowSymbol", // solo el signo $
-    }).format(amount);
-  }
+
 
   return (
     <div className="price">
