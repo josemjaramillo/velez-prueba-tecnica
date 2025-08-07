@@ -9,7 +9,7 @@ interface AddCartButtonProps {
 
 function AddCartButton({ productId, itemId, isAvailable }: AddCartButtonProps) {
   const [isAdding, setIsAdding] = useState(false);
-  const {addToCart} = useCart();
+  const {addToCart, openCart} = useCart();
 
   function handleAddToCart() {
     if (!isAvailable) return;
@@ -19,6 +19,7 @@ function AddCartButton({ productId, itemId, isAvailable }: AddCartButtonProps) {
     setTimeout(() => {
       console.log(`Agregado al carrito: ${itemId}`);
       addToCart(productId, itemId);
+      openCart();
       setIsAdding(false);
     }, 1000);
   }

@@ -6,6 +6,7 @@ const STORAGE_KEY = "cart-items";
 
 export function CartProvider({ children }: { children: React.ReactNode }) {
   const [cart, setCart] = useState<CartItem[]>([]);
+  const [isCartOpen, setIsCartOpen] = useState(false);
 
   useEffect(() => {
     try {
@@ -19,7 +20,6 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     }
   }, []);
 
-  
   function saveCart(updated: CartItem[]) {
     setCart(updated);
     localStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
@@ -31,9 +31,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
     if (existing) {
       updated = cart.map((item) =>
-        item.itemId === itemId
-          ? { ...item, quantity: item.quantity + 1 }
-          : item
+        item.itemId === itemId ? { ...item, quantity: item.quantity + 1 } : item
       );
     } else {
       updated = [...cart, { productId, itemId, quantity: 1 }];
@@ -57,10 +55,26 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     0
   );
 
+  function openCart() {
+    setIsCartOpen(true);
+  }
+
+  function closeCart() {
+    setIsCartOpen(false);
+  }
 
   return (
     <CartContext.Provider
-      value={{ cart, cartCount, addToCart, removeFromCart, clearCart }}
+      value={{
+        cart,
+        cartCount,
+        addToCart,
+        removeFromCart,
+        clearCart,
+        isCartOpen,
+        openCart,
+        closeCart,
+      }}
     >
       {children}
     </CartContext.Provider>
