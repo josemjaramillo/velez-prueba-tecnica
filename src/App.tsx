@@ -2,8 +2,9 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ProductPage from "./pages/ProductPage";
 import Home from "./pages/Home";
-import Layout from "./components/Layout";
 import { CartProvider } from "./context/CartProvider";
+import Layout from "./components/layout/Layout";
+
 
 function App() {
   return (

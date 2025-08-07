@@ -1,0 +1,90 @@
+footer {
+    text-align: center;
+    color: gray;
+    padding: 1rem;
+    font-size: 0.9rem;
+}
+
+.navbar {
+    background: black;
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-content {
+    padding: 16px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* Boton del carrito */
+
+.cart-btn {
+    position: relative;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    color: white;
+}
+
+.cart-btn:hover {
+    scale: 1.1;
+}
+
+.cart-icon {
+    width: 24px;
+    height: 24px;
+}
+
+.cart-count {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 3px 6px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    line-height: 1;
+}
+
+.burst {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    background-color: white;
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    animation: pop 0.4s ease-out forwards;
+    pointer-events: none;
+}
+
+@keyframes pop {
+    0% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(6);
+    }
+}

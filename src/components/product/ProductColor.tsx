@@ -1,4 +1,4 @@
-import getColorHex from "../utils/getColorHex";
+import getColorHex from "../../utils/getColorHex";
 
 interface ProductColorProps {
   color: string;

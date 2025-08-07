@@ -1,0 +1,42 @@
+.product-container {
+    min-height: 100vh;
+    padding: 1rem 0rem;
+}
+
+
+/* Colores */
+.active {
+    background-color: black;
+    color: white
+}
+
+.color-button {
+    width: 1rem;
+    height: 1rem;
+    border: 1px solid white;
+    box-shadow: 0 0 0 1px black;
+}
+
+/* Agregar al carrito */
+
+.add-cart-btn {
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    padding: 8px;
+}
+
+.add-cart-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    background-color: white;
+    border: solid 1px black;
+    color: black
+}
+
+/* Precios */
+
+.original-price {
+    opacity: 0.6;
+    text-decoration: line-through 1px;
+}

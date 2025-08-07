@@ -1,6 +1,7 @@
 import { useRef } from "react";
-import { useCart } from "../context/useCart";
-import toCOP from "../utils/toCOP";
+import { useCart } from "../../context/useCart";
+import toCOP from "../../utils/toCOP";
+import "./Cart.css"
 
 function Cart() {
   const {

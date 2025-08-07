@@ -1,4 +1,4 @@
-import toCOP from "../utils/toCOP";
+import toCOP from "../../utils/toCOP";
 
 interface ProductPriceProps {
   price: number;

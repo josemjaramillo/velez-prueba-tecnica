@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { ShoppingCart } from "lucide-react";
-import { useCart } from "../context/useCart";
+import { useCart } from "../../context/useCart";
+
 
 function Header() {
   const [burst, setBurst] = useState(false);

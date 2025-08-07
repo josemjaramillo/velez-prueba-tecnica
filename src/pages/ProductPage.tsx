@@ -2,11 +2,12 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import type { Product, ProductItem } from "../types/types";
 import mapProduct from "../utils/mapProduct";
-import ImgGallery from "../components/ImgGallery";
-import ProductSize from "../components/ProductSize";
-import ProductPrice from "../components/ProductPrice";
-import ProductColor from "../components/ProductColor";
-import AddCartButton from "../components/AddCartButton";
+import ImgGallery from "../components/product/ImgGallery";
+import ProductSize from "../components/product/ProductSize";
+import ProductPrice from "../components/product/ProductPrice";
+import ProductColor from "../components/product/ProductColor";
+import AddCartButton from "../components/product/AddCartButton";
+import "./ProductPage.css"
 
 function ProductPage() {
     const { id } = useParams<{ id: string }>();

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useCart } from "../context/useCart";
+import { useCart } from "../../context/useCart";
 
 interface AddCartButtonProps {
   productId: string;

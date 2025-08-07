@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import "./ImgGallery.css"
 
 interface ItemImgs {
     imageUrl: string;

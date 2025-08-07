@@ -1,4 +1,4 @@
-import type { ProductItem } from "../types/types";
+import type { ProductItem } from "../../types/types";
 
 interface ProductSizeProps {
   items: ProductItem[];
