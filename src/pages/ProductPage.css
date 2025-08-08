@@ -10,6 +10,12 @@
     padding: 1rem;
 }
 
+@media (max-width: 768px) {
+    .info-container {
+        grid-template-columns: 1fr;
+    }
+}
+
 .info-container>div {
     display: flex;
     flex-direction: column;
@@ -33,11 +39,6 @@
 }
 
 
-@media (max-width: 768px) {
-    .product-container {
-        grid-template-columns: 1fr;
-    }
-}
 
 
 /* Agregar al carrito */

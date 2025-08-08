@@ -1,61 +1,93 @@
-import { useEffect, useRef, useState } from "react";
-import "./ImgGallery.css"
+import { useRef, useState } from "react";
+import "./ImgGallery.css";
+import useScrollAnimation from "../../utils/useScrollAnimation";
 
 interface ItemImgs {
-    imageUrl: string;
-    imageText: string;
+  imageUrl: string;
+  imageText: string;
 }
 
 function ImgGallery({ imgs }: { imgs: ItemImgs[] }) {
-    const containerRef = useRef<HTMLDivElement>(null);
-    const [isRunning, setIsRunning] = useState(true);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [isRunning, setIsRunning] = useState(true);
+  const [selectedImg, setSelectedImg] = useState<ItemImgs | null>(null);
+  const hasMoved = useRef(false);
 
-    const imgGallery = [...imgs, ...imgs];
+  const imgGallery = [...imgs, ...imgs];
 
-    useEffect(() => {
-        const cont = containerRef.current;
-        if (!cont) return;
+  // Dragging state
+  const isDragging = useRef(false);
+  const startX = useRef(0);
+  const scrollLeft = useRef(0);
 
-        let reqId: number;
+  useScrollAnimation(containerRef, isRunning, isDragging);
 
-        const animate = () => {
-            const speed = 5;
-            if (isRunning) {
-                cont.scrollLeft += speed;
-                // si llegamos al final de la primera mitad, reinicia:
-                // if (cont.scrollLeft >= cont.scrollWidth / 2) {
-                //     cont.scrollLeft -= cont.scrollWidth / 2;
-                // }
+  // Mouse event handlers
+  function handleMouseDown(e: React.MouseEvent) {
+    const cont = containerRef.current;
+    if (!cont) return;
+    isDragging.current = true;
+    hasMoved.current = false;
+    startX.current = e.pageX - cont.offsetLeft;
+    scrollLeft.current = cont.scrollLeft;
+    setIsRunning(false); // pause auto-scroll
+  }
 
-                const half = cont.scrollWidth / 2;
-                if (cont.scrollLeft >= half) {
-                    cont.scrollLeft = cont.scrollLeft % half;
-                }
-            }
-            reqId = requestAnimationFrame(animate);
-        };
+  function handleMouseMove(e: React.MouseEvent) {
+    if (!isDragging.current) return;
+    const cont = containerRef.current;
+    if (!cont) return;
+    e.preventDefault();
+    hasMoved.current = true;
+    const x = e.pageX - cont.offsetLeft;
+    const walk = (x - startX.current) * 1; // scroll speed
+    cont.scrollLeft = scrollLeft.current - walk;
+  }
 
-        animate();
-        return () => cancelAnimationFrame(reqId);
-    }, [isRunning]);
+  function endDrag() {
+    isDragging.current = false;
+    setTimeout(() => setIsRunning(true), 2000);
+  }
 
-    return (
-        <div
-            ref={containerRef}
-            className="gallery-container"
-            onMouseEnter={() => setIsRunning(false)}
-            onMouseLeave={() => setIsRunning(true)}
-        >
-            {imgGallery.map((img, index) => (
-                <img
-                    className="gallery-item"
-                    key={index}
-                    src={img.imageUrl}
-                    alt={img.imageText}
-                />
-            ))}
+  function clickImg(img: ItemImgs) {
+    if (hasMoved.current) return;
+    setSelectedImg(img);
+  }
+
+  return (
+    <div
+      ref={containerRef}
+      className="gallery-container"
+      onMouseDown={handleMouseDown}
+      onMouseMove={handleMouseMove}
+      onMouseUp={endDrag}
+      onMouseLeave={endDrag}
+    >
+      {imgGallery.map((img, index) => (
+        <img
+          className="gallery-item"
+          key={index}
+          src={img.imageUrl}
+          alt={img.imageText}
+          draggable={false}
+          onClick={() => clickImg(img)}
+        />
+      ))}
+      {selectedImg && (
+        <div className="modal-backdrop" onClick={() => setSelectedImg(null)}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <button
+              className="modal-close"
+              onClick={() => setSelectedImg(null)}
+            >
+              ×
+            </button>
+            <img src={selectedImg.imageUrl} alt={selectedImg.imageText} />
+          </div>
         </div>
-    );
+      )}
+    </div>
+  );
 }
 
 export default ImgGallery;

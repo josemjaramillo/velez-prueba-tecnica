@@ -52,7 +52,7 @@ function FeaturedProducts({ query }: ProductPriceProps) {
   if (error)
     return (
       <div>
-        <h1>{error}</h1>
+        <h1>No se cargaron mas productos</h1>
       </div>
     );
 
