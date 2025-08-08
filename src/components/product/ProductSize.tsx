@@ -10,19 +10,21 @@ function ProductSize({ items, selectedItem, onSelectItem }: ProductSizeProps) {
   return (
     <div className="size-container">
       <p>Tallas:</p>
-      {items.map((item, index) => (
-        <button
-          key={index}
-          className={`size-button ${
-            selectedItem?.itemId === item.itemId ? "active" : ""
-          }`}
-          onClick={() => {
-            onSelectItem(item);
-          }}
-        >
-          {item.size}
-        </button>
-      ))}
+      <div className="sizes">
+        {items.map((item, index) => (
+          <button
+            key={index}
+            className={`size-button ${
+              selectedItem?.itemId === item.itemId ? "active" : ""
+            }`}
+            onClick={() => {
+              onSelectItem(item);
+            }}
+          >
+            {item.size}
+          </button>
+        ))}
+      </div>
     </div>
   );
 }

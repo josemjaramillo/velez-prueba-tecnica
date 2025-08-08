@@ -1,7 +1,6 @@
 // import { useState } from 'react'
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import ProductPage from "./pages/ProductPage";
-import Home from "./pages/Home";
 import { CartProvider } from "./context/CartProvider";
 import Layout from "./components/layout/Layout";
 
@@ -12,7 +11,7 @@ function App() {
       <Layout>
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Navigate to="/product/125829257" replace />} />
             <Route path="/product/:id" element={<ProductPage />} />
           </Routes>
         </BrowserRouter>

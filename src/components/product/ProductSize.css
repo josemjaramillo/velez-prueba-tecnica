@@ -1,32 +1,36 @@
-.size-container {
-  display: flex;
-  gap: 6px;
+.size-container, .sizes {
+    display: flex;
+    gap: 6px;
 }
 
-
+@media (max-width: 768px) {
+    .sizes {
+        flex-wrap: wrap;
+    }
+}
 
 .size-button {
-  width: 30px;
-  aspect-ratio: 1 / 1;
-  background-color: white;
-  color: #333;
-  border: 1px solid #ccc;
-  font-size: 16px;
-  font-weight: 500;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.2s ease;         
+    width: 30px;
+    aspect-ratio: 1 / 1;
+    background-color: white;
+    color: #333;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
 }
 
 .size-button:hover {
-  background-color: #f2f2f2;
-  border-color: #999;
+    background-color: #f2f2f2;
+    border-color: #999;
 }
 
 .size-button.active {
-  background-color: black;
-  color: white;
-  border-color: black;
+    background-color: black;
+    color: white;
+    border-color: black;
 }
